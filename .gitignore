@@ -1,0 +1,12 @@
+# Data file
+*.csv
+*.json
+*.xls
+*.npy
+*.npz
+*.pkl
+
+# cache file
+__pycache__/
+.DS_Store
+
