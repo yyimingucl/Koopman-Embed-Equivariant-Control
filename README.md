@@ -1,7 +1,7 @@
 Embedded Control on Equivariant Manifold Flows
 ===
 
-This is a implementation of the paper [Embedded Control on Equivariant Manifold Flows](https://arxiv.org/abs/2312.01544)
+This is the implementation of the paper [Embedded Control on Equivariant Manifold Flows](https://arxiv.org/abs/2312.01544)
 
 ## Control Demos
 ### Pendulum 
