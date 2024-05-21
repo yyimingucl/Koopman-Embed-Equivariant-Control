@@ -1,0 +1,53 @@
+# ------ training parameters ------ 
+num_epochs: !!int 50
+batch_size: !!int 256
+learning_rate: !!float 0.001 #0.001
+lambda: !!float 1.0 # ID regularization parameter
+beta: !!float 0.3 # distance regularization parameter
+gradclip: !!float 1.0
+lr_decay: !!float 0.5
+lr_decay_step: !!int 5
+## value network parameters
+num_value_epochs: !!int 200
+value_net_lr: !!float 0.001 # 0.001
+value_net_lr_decay_step: !!int 5
+value_net_lr_decay: !!float 0.5
+train_dynamics: !!bool True
+train_value: !!bool True
+
+
+# ------  model parameters ------ 
+hidden_dim: !!int 64
+
+
+# ------  data parameters ------ 
+num_steps: !!int 8
+traj_length: !!int 100
+num_trajectories: !!int 5000
+
+
+# ------ environment parameters ------ 
+env_name: !!str wave
+process_noise_cov: !!float 0.0
+sensor_noise_cov: !!float 0.0
+random_init_state_cov: !!float 0.0
+sample_trajectories: !!bool False
+action_limit: !!float 1.0
+observation_limit: !!float 10.0
+n_state: !!int 50
+n_observation: !!int 50
+n_action: !!int 10
+
+Q_weight: !!float 1
+R_weight: !!float 1
+
+
+
+# ------  evaluation parameters ------
+eval_T: !!int 200 # number of time steps to evaluate
+eval_episodes: !!int 100 # number of times to evaluate
+render: !!bool False
+
+
+
+

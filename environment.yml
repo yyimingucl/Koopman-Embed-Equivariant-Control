@@ -1,0 +1,16 @@
+name: koopman_policy
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy=1.26.*
+  - matplotlib=3.8.*
+  - torch
+  - torchvision
+  - functorch
+  - mujoco=2.3.7
+  - gymnasium
+  - pygame==2.5.1
+  - controlgym
+  - cvxpy
