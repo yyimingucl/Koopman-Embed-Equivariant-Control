@@ -17,7 +17,7 @@ This is the implementation of the paper [Embedded Control on Equivariant Manifol
 ## Install & Dependence
 First, clone the repository:
 ```
-git clone https://github.com/yyimingucl/Koopman-Embed-Equivariant-Control
+git clone https://github.com/yyimingucl/Koopman-Embed-Equivariant-Control.git
 ```
 Then install the dependencies as listed in ```environment.yml``` and activate the environment: 
 ```
