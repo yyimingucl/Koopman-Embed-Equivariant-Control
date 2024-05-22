@@ -1,6 +1,5 @@
 """
 Filename: wrappers.py
-Author: Yiming Yang (zcahyy1@ucl.ac.uk)
 Created: 24/09/2023
 Description:
     This file contains environment wrapper for pendulum environments.

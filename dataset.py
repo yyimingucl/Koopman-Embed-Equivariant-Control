@@ -1,6 +1,5 @@
 '''
 Filename: dataset.py
-Author: Yiming Yang (zcahyy1@ucl.ac.uk)
 Created: 24/01/2024
 Description:
     This file contains the class for dataset for training.

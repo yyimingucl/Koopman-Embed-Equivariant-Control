@@ -1,6 +1,5 @@
 '''
 Filename: roll_out.py
-Author: Yiming Yang (zcahyy1@ucl.ac.uk)
 Created: 24/01/2024
 Description:
     This file contains the class for roll out Trajectory from given Environment.

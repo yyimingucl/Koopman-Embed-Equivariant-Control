@@ -1,6 +1,5 @@
 '''
 Filename: convex_solver.py
-Author: Yiming Yang (zcahyy1@ucl.ac.uk)
 Created: 24/01/2024
 Description:
     This file contains the class for convex solver for Quadratic problem formed by 
