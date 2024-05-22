@@ -242,8 +242,8 @@ class KoopmanOp(nn.Module):
     def batch_forward(self, batch_z:Tensor, batch_a:Tensor):
         # batch_z: [batch_size, T, hidden_dim]
         # batch_a: [batch_size, T, act_dim]
-        batch_z_1 = torch.bmm(self.Kz, batch_z.unsqueeze(-1)).squeeze(-1)
-        batch_z_2 = torch.bmm(self.Jz_B, batch_a.unsqueeze(-1)).squeeze(-1)
+        batch_z_1 = torch.bmm(self.Kz, batch_z.permute(0,2,1)).squeeze(-1).permute(0,2,1)
+        batch_z_2 = torch.bmm(self.Jz_B, batch_a.permute(0,2,1)).squeeze(-1).permute(0,2,1)
         batch_z_next = batch_z + (batch_z_1 + batch_z_2)*delta_t
         return batch_z_next
 
@@ -292,11 +292,11 @@ class Koopman_dynamics(nn.Module):
         
         self.koopman.Kz = forward_weights[:, :self.hidden_dim, :].transpose(1,2)
         self.koopman.Jz_B = forward_weights[:, self.hidden_dim:, :].transpose(1,2)
+        pred_z_next = self.koopman.batch_forward(z_seq, a_seq)
 
         for i in range(self.num_steps):
-            pred_z_next = self.koopman.batch_forward(z_seq[:, i, :], a_seq[:, i, :])
             recon_s = self.decoder(z_seq[:, i, :])
-            recon_s_next = self.decoder(pred_z_next)
+            recon_s_next = self.decoder(pred_z_next[:, i, :])
 
             # predication loss
             loss_fwd = loss_fwd + F.mse_loss(recon_s_next, s_next_seq[:, i, :])
@@ -402,7 +402,6 @@ class WaveFunction_Koopman_dynamics(nn.Module):
         
         self.koopman.Kz = forward_weights[:, :self.hidden_dim, :].transpose(1,2)
         self.koopman.Jz_B = forward_weights[:, self.hidden_dim:, :].transpose(1,2)
-
         pred_z_next = self.koopman.batch_forward(z_seq, a_seq)
         
         for i in range(self.num_steps):

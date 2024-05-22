@@ -7,7 +7,7 @@ import torch
 import numpy as np
 
 
-from utils import Logger, set_seed, read_config_from_yaml
+from utils import Logger, set_seed, read_config_from_yaml, query_environment_info
 from model import WaveFunction_Koopman_dynamics, Quad_Value_Net
 
 from train import train_koopman_dynamics, train_value_net
@@ -40,7 +40,7 @@ env = gym.make(env_name, process_noise_cov=process_noise_cov,
                          observation_limit=obs_limit,
                          R_weight=R_weight, 
                          Q_weight=Q_weight)
-env_info = {}
+env_info = query_environment_info(env, env_name)
 state_dim = env.observation_space.shape[0] 
 act_dim = env.action_space.shape[0]
     
@@ -52,7 +52,6 @@ roll_out_sampler = roll_out(env, env_info)
 # Create Koopman Dynamics Model
 hidden_dim = config["hidden_dim"]
 num_steps = config["num_steps"]
-num_mid_layers = config["num_mid_layers"]
 pos_dim = int(state_dim / 2)
 velocity_dim = int(state_dim / 2)
 Kdys_model = WaveFunction_Koopman_dynamics(pos_dim=pos_dim, velocity_dim=velocity_dim, hidden_dim=hidden_dim, act_dim=act_dim, num_steps=num_steps).to(device)
@@ -98,7 +97,6 @@ if config["train_dynamics"]:
     metric_name = ["loss_forward", "loss_identity", "loss_distance_preserving"]
     train_logger = Logger(save_path + "/train_log.csv", metric_name)
     test_logger = Logger(save_path + "/test_log.csv", metric_name)
-    Kdys_model.load_state_dict(torch.load(os.path.join(save_path, "KoopmanDynamics.pt")))
     train_koopman_dynamics(Kdys_model, train_dataset, num_epochs=num_epochs, 
                         batch_size=batch_size, device=device, 
                         model_save_path=save_path, 
@@ -119,7 +117,6 @@ value_net = Quad_Value_Net(hidden_dim)
 value_net = value_net.to(device)
 
 
-train_buffer = np.load("train_reward_buffer.npy")
 # Create Logger
 num_value_epochs = config["num_value_epochs"]
 value_net_lr = config["value_net_lr"]

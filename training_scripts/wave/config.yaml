@@ -31,7 +31,7 @@ env_name: !!str wave
 process_noise_cov: !!float 0.0
 sensor_noise_cov: !!float 0.0
 random_init_state_cov: !!float 0.0
-sample_trajectories: !!bool False
+sample_trajectories: !!bool True
 action_limit: !!float 1.0
 observation_limit: !!float 10.0
 n_state: !!int 50
