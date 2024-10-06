@@ -521,13 +521,13 @@ class Quad_Value_Net(nn.Module):
 
 
 '''
-Policy: Convex Solver
+Policy: Solver
 '''
 cpu_device = torch.device('cpu')
 class Policy:
-    def __init__(self, convex_solver, *args, **kwargs) -> None:
+    def __init__(self, solver, *args, **kwargs) -> None:
         super(Policy, self).__init__(*args, **kwargs)
-        self.solver = convex_solver
+        self.solver = solver
     
     @staticmethod
     def obtain_param_in_quadratic_problem_in_batch(koopman_dynamics_model, value_net, 

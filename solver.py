@@ -73,4 +73,3 @@ def create_solver(env_info, gamma=0.99):
             return opt_action_batch
     
     return solver
-
