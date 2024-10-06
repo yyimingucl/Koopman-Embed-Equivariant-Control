@@ -2,7 +2,7 @@
 Filename: convex_solver.py
 Created: 24/01/2024
 Description:
-    This file contains the class for convex solver for Quadratic problem formed by 
+    This file contains the class for solver for linear programing problem formed by 
     Jz_B, dv/dz, and LQC term.
 '''
 
@@ -11,9 +11,9 @@ import numpy as np
 import torch
 
 
-def create_convex_solver(env_info, gamma=0.99):
+def create_solver(env_info, gamma=0.99):
     assert gamma < 1.0, 'discount factor should be less than 1.0'
-    print('[INFO] Cretateing the Convex Solver for {}'.format(env_info['Name']))
+    print('[INFO] Cretateing the Solver for {}'.format(env_info['Name']))
 
     action = cp.Variable(env_info["Action Space"].shape[0])
     action_low = torch.tensor(env_info["Action Space"].low, dtype=torch.float32)
@@ -36,7 +36,7 @@ def create_convex_solver(env_info, gamma=0.99):
         raise NotImplementedError('The Coefficeint for Linear Quadratic Cost is not known for {}'.format(env_info['Name']))
 
 
-    class convex_solver:
+    class solver:
         def __init__(self) -> None:
             self.conditions = conditions            
             self.gamma = gamma
@@ -72,5 +72,5 @@ def create_convex_solver(env_info, gamma=0.99):
             opt_action_batch = torch.tensor(opt_action_batch, dtype=torch.float32)
             return opt_action_batch
     
-    return convex_solver
+    return solver
 

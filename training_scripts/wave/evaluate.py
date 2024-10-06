@@ -11,7 +11,7 @@ sys.path.insert(0, parentdir)
 
 from utils import set_seed, query_environment_info, read_config_from_yaml
 from model import Quad_Value_Net, Policy,WaveFunction_Koopman_dynamics
-from convex_solver import create_convex_solver
+from solver import create_solver
 from roll_out import roll_out
 from dataset import RLDataset
 import controlgym as gym
