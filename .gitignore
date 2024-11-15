@@ -13,3 +13,4 @@ __pycache__/
 LICENSE
 
 eval_results/
+controlgym/
