@@ -1,4 +1,4 @@
-Embedded Control on Equivariant Manifold Flows
+Koopman Embedded Equivariant Control
 ===
 
 This is the implementation of the paper [Koopman Embedded Equivariant Control](https://arxiv.org/abs/2312.01544).
